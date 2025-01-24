@@ -1,5 +1,6 @@
 package com.github.gestion_mediatheque.items;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.github.gestion_mediatheque.people.Author;
@@ -7,7 +8,7 @@ import com.github.gestion_mediatheque.people.Author;
 public class Book implements LibraryItem{
     
     private String id;
-    private static List<String> allIds;
+    private static List<String> allIds = new ArrayList<>();
     private String title;
     private List<Author> authors;
 
@@ -20,6 +21,7 @@ public class Book implements LibraryItem{
         if (authors.isEmpty()){
             throw new NullAuthorException("Book needs at least one author to be created.");
         }
+
         //Unique id
         if (allIds.contains(id)){
             throw new NonUniqueIdException("Id must be unique.");
