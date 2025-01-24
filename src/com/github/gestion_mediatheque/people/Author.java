@@ -10,7 +10,7 @@ public class Author {
 
     public Author(String name) throws NullNameException{
         //Non empty name
-        if (name.isEmpty()){
+        if (name == null || name.isEmpty()){
             throw new NullNameException("Name can't be null.");
         }
         this.name = name;
