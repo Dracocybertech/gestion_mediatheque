@@ -26,4 +26,20 @@ public class Author {
         this.birthdate = birthdate;
         this.nationality = nationality;
     }
+
+    public String getId(){
+        return this.id;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public LocalDate getBirthDate(){
+        return this.birthdate;
+    }
+
+    public String getNationality(){
+        return this.nationality;
+    }
 }
