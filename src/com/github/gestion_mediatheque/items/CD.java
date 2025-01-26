@@ -1,6 +1,6 @@
 package com.github.gestion_mediatheque.items;
 
-public class CD implements LibraryItem{
+public class CD implements LibraryItem {
     private String id;
     private String title;
     private String artistName;
@@ -37,19 +37,19 @@ public class CD implements LibraryItem{
         this.tracksNumber = tracksNumber;
     }
 
-    public String getId(){
+    public String getId() {
         return this.id;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return this.title;
     }
 
-    public String getArtistName(){
+    public String getArtistName() {
         return this.artistName;
     }
 
-    public Integer getTracksNumber(){
+    public Integer getTracksNumber() {
         return this.tracksNumber;
     }
 }
