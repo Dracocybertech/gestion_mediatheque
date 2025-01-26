@@ -10,10 +10,10 @@ import org.junit.Test;
 import com.github.gestion_mediatheque.items.CD;
 
 public class CDTest {
-    String originalId = "id";
-    String originalTitle = "title";
-    String originalArtisteName = "artistName";
-    Integer originalTracksNumber = 1;
+    String id = "id";
+    String title = "title";
+    String artistName = "artistName";
+    Integer tracksNumber = 1;
 
     Logger logger = Logger.getLogger(getClass().getName());
 
@@ -28,12 +28,12 @@ public class CDTest {
     @Test
     public void createCDTest() {
         try {
-            String id2 = originalId.concat("2");
-            String title2 = originalTitle.concat("2");
-            String artistName2 = originalArtisteName.concat("2");
-            Integer tracksNumber2 = originalTracksNumber + 1;
+            String id2 = id.concat("2");
+            String title2 = title.concat("2");
+            String artistName2 = artistName.concat("2");
+            Integer tracksNumber2 = tracksNumber + 1;
 
-            new CD(originalId, originalTitle, originalArtisteName, originalTracksNumber);
+            new CD(id, title, artistName, tracksNumber);
             new CD(id2, title2, artistName2, tracksNumber2);
         } catch (Exception e) {
             fail(e.getMessage());
