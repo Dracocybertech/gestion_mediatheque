@@ -18,7 +18,7 @@ public class Book implements LibraryItem{
             throw new NullTitleException("Title cannot be empty. Please add a title with at least one character.");
         }
         //Non empty author
-        if (authors.isEmpty()){
+        if (authors == null || authors.isEmpty()){
             throw new NullAuthorException("Book needs at least one author to be created.");
         }
 

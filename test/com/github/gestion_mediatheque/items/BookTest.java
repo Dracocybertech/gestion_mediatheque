@@ -69,4 +69,22 @@ public class BookTest {
         String nullTitle = "";
         new Book(id, nullTitle, listAuthors);
     }
+
+    @Test(expected=NullAuthorException.class)
+    public void nullAuthorsException() throws NullTitleException, NullAuthorException, NonUniqueIdException {
+        String id = originalId.concat("1");
+        String title = originalTitle.concat("1");
+        listAuthors = null;
+        new Book(id, title, listAuthors);
+    }
+
+    @Test(expected=NullAuthorException.class)
+    public void emptyAuthorsException() throws NullTitleException, NullAuthorException, NonUniqueIdException {
+        String id = originalId.concat("1");
+        String title = originalTitle.concat("1");
+        listAuthors.clear();
+        new Book(id, title, listAuthors);
+    }
+
+    
 }
