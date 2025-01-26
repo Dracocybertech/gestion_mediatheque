@@ -34,6 +34,9 @@ public class BookTest {
         }
     }
 
+    /**
+     * Test if a Book is created if valid parameters are given.
+     */
     @Test
     public void createBookTest() {
         String id = originalId.concat("1");
@@ -49,6 +52,11 @@ public class BookTest {
         }
     }
 
+    /**
+     * Test if a Book is not created if the id is null.
+     * 
+     * @throws NullEmptyAttributeException
+     */
     @Test(expected = NullEmptyAttributeException.class)
     public void nullAttributeException() throws NullEmptyAttributeException {
         String id = originalId.concat("1");
@@ -56,6 +64,11 @@ public class BookTest {
         new Book(id, nullTitle, listAuthors);
     }
 
+    /**
+     * Test if a Book is not created if the id is empty.
+     * 
+     * @throws NullEmptyAttributeException
+     */
     @Test(expected = NullEmptyAttributeException.class)
     public void emptyTitleException() throws NullEmptyAttributeException {
         String id = originalId.concat("1");
@@ -63,6 +76,11 @@ public class BookTest {
         new Book(id, nullTitle, listAuthors);
     }
 
+    /**
+     * Test if a Book is not created if the list of authors is null.
+     * 
+     * @throws NullEmptyAttributeException
+     */
     @Test(expected = NullEmptyAttributeException.class)
     public void nullAuthorsException() throws NullEmptyAttributeException {
         String id = originalId.concat("1");
@@ -71,6 +89,11 @@ public class BookTest {
         new Book(id, title, listAuthors);
     }
 
+    /**
+     * Test if a Book is not created if the list of authors is empty.
+     * 
+     * @throws NullEmptyAttributeException
+     */
     @Test(expected = NullEmptyAttributeException.class)
     public void emptyAuthorsException() throws NullEmptyAttributeException {
         String id = originalId.concat("1");
