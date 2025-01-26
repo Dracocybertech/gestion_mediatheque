@@ -18,7 +18,7 @@ public class CDTest {
     Logger logger = Logger.getLogger(getClass().getName());
 
     @Before
-    public void beforeTest(){
+    public void beforeTest() {
         logger.info("Begin CD test");
     }
 
@@ -26,7 +26,7 @@ public class CDTest {
      * Test if CD can be created if all informations are correctly given.
      */
     @Test
-    public void createCDTest(){
+    public void createCDTest() {
         try {
             String id2 = originalId.concat("2");
             String title2 = originalTitle.concat("2");
@@ -35,8 +35,7 @@ public class CDTest {
 
             new CD(originalId, originalTitle, originalArtisteName, originalTracksNumber);
             new CD(id2, title2, artistName2, tracksNumber2);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             fail(e.getMessage());
         }
     }
