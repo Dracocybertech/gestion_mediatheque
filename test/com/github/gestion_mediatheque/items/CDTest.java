@@ -61,4 +61,24 @@ public class CDTest {
     public void emptyIdException() throws NullEmptyAttributeException, NegativeTracksNumberException{
         new CD("", title, artistName, tracksNumber);
     }
+
+    /**
+     * Test if CD is not created if title is null at the construction.
+     * @throws NegativeTracksNumberException 
+     * @throws NullEmptyAttributeException 
+     */
+    @Test(expected=NullEmptyAttributeException.class)
+    public void nullTitleException() throws NullEmptyAttributeException, NegativeTracksNumberException{
+        new CD(id, null, artistName, tracksNumber);
+    }
+
+    /**
+     * Test if CD is not created if title is empty at the construction.
+     * @throws NegativeTracksNumberException 
+     * @throws NullEmptyAttributeException 
+     */
+    @Test(expected=NullEmptyAttributeException.class)
+    public void emptyTitleException() throws NullEmptyAttributeException, NegativeTracksNumberException{
+        new CD(id, "", artistName, tracksNumber);
+    }
 }
