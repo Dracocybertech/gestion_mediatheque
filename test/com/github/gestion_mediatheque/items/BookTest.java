@@ -9,6 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.github.gestion_mediatheque.items.Book;
+import com.github.gestion_mediatheque.items.NonUniqueIdException;
+import com.github.gestion_mediatheque.items.NullAuthorException;
+import com.github.gestion_mediatheque.items.NullTitleException;
 import com.github.gestion_mediatheque.people.Author;
 
 public class BookTest {
@@ -51,5 +54,19 @@ public class BookTest {
         catch(Exception e){
             fail(e.getMessage());
         }
+    }
+
+    @Test(expected=NullTitleException.class)
+    public void nullTitleException() throws NullTitleException, NullAuthorException, NonUniqueIdException{
+        String id = originalId.concat("1");
+        String nullTitle = null;
+        new Book(id, nullTitle, listAuthors);
+    }
+
+    @Test(expected=NullTitleException.class)
+    public void emptyTitleException() throws NullTitleException, NullAuthorException, NonUniqueIdException{
+        String id = originalId.concat("1");
+        String nullTitle = "";
+        new Book(id, nullTitle, listAuthors);
     }
 }
