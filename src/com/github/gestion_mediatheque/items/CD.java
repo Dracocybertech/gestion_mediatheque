@@ -27,7 +27,7 @@ public class CD implements LibraryItem {
         if (artistName == null || artistName.isEmpty()) {
             throw new NullEmptyAttributeException("artistName");
         }
-        if (tracksNumber == null) {
+        if (tracksNumber == null || tracksNumber < 0) {
             throw new NegativeTracksNumberException();
         }
 

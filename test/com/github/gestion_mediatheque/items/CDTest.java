@@ -81,4 +81,44 @@ public class CDTest {
     public void emptyTitleException() throws NullEmptyAttributeException, NegativeTracksNumberException{
         new CD(id, "", artistName, tracksNumber);
     }
+
+    /**
+     * Test if CD is not created if artistName is null at the construction.
+     * @throws NegativeTracksNumberException 
+     * @throws NullEmptyAttributeException 
+     */
+    @Test(expected=NullEmptyAttributeException.class)
+    public void nullArtistNameException() throws NullEmptyAttributeException, NegativeTracksNumberException{
+        new CD(id, title, null, tracksNumber);
+    }
+
+    /**
+     * Test if CD is not created if artistName is empty at the construction.
+     * @throws NegativeTracksNumberException 
+     * @throws NullEmptyAttributeException 
+     */
+    @Test(expected=NullEmptyAttributeException.class)
+    public void emptyArtistNameException() throws NullEmptyAttributeException, NegativeTracksNumberException{
+        new CD(id, title, "", tracksNumber);
+    }
+
+    /**
+     * Test if CD is not created if the number of tracks is null at the construction.
+     * @throws NegativeTracksNumberException 
+     * @throws NullEmptyAttributeException 
+     */
+    @Test(expected=NegativeTracksNumberException.class)
+    public void nullTracksNumberException() throws NullEmptyAttributeException, NegativeTracksNumberException{
+        new CD(id, title, artistName, null);
+    }
+
+    /**
+     * Test if CD is not created if the number of tracks is below 0.
+     * @throws NegativeTracksNumberException 
+     * @throws NullEmptyAttributeException 
+     */
+    @Test(expected=NegativeTracksNumberException.class)
+    public void emptyTracksNumberException() throws NullEmptyAttributeException, NegativeTracksNumberException{
+        new CD(id, title, artistName, -1);
+    }
 }
