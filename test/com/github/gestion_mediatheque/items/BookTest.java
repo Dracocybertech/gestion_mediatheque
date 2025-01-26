@@ -16,8 +16,8 @@ public class BookTest {
 
     Author author1;
     ArrayList<Author> listAuthors;
-    String originalId = "id";
-    String originalTitle = "title";
+    String id = "id";
+    String title = "title";
 
     Logger logger = Logger.getLogger(getClass().getName());
 
@@ -39,10 +39,8 @@ public class BookTest {
      */
     @Test
     public void createBookTest() {
-        String id = originalId.concat("1");
-        String title = originalTitle.concat("1");
-        String id2 = originalId.concat("2");
-        String title2 = originalTitle.concat("2");
+        String id2 = "id2";
+        String title2 = "title2";
 
         try {
             new Book(id, title, listAuthors);
@@ -59,9 +57,7 @@ public class BookTest {
      */
     @Test(expected = NullEmptyAttributeException.class)
     public void nullAttributeException() throws NullEmptyAttributeException {
-        String id = originalId.concat("1");
-        String nullTitle = null;
-        new Book(id, nullTitle, listAuthors);
+        new Book(id, null, listAuthors);
     }
 
     /**
@@ -71,9 +67,7 @@ public class BookTest {
      */
     @Test(expected = NullEmptyAttributeException.class)
     public void emptyTitleException() throws NullEmptyAttributeException {
-        String id = originalId.concat("1");
-        String nullTitle = "";
-        new Book(id, nullTitle, listAuthors);
+        new Book(id, "", listAuthors);
     }
 
     /**
@@ -83,10 +77,7 @@ public class BookTest {
      */
     @Test(expected = NullEmptyAttributeException.class)
     public void nullAuthorsException() throws NullEmptyAttributeException {
-        String id = originalId.concat("1");
-        String title = originalTitle.concat("1");
-        listAuthors = null;
-        new Book(id, title, listAuthors);
+        new Book(id, title, null);
     }
 
     /**
@@ -96,9 +87,7 @@ public class BookTest {
      */
     @Test(expected = NullEmptyAttributeException.class)
     public void emptyAuthorsException() throws NullEmptyAttributeException {
-        String id = originalId.concat("1");
-        String title = originalTitle.concat("1");
-        listAuthors.clear();
+        listAuthors = new ArrayList<>();
         new Book(id, title, listAuthors);
     }
 
