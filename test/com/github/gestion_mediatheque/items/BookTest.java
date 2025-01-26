@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.github.gestion_mediatheque.items.Book;
-import com.github.gestion_mediatheque.items.NonUniqueIdException;
 import com.github.gestion_mediatheque.items.NullAuthorException;
 import com.github.gestion_mediatheque.items.NullTitleException;
 import com.github.gestion_mediatheque.people.Author;
@@ -18,7 +17,6 @@ public class BookTest {
     
     Author author1;
     ArrayList<Author> listAuthors;
-    Book book1;
     String originalId = "id";
     String originalTitle = "title";
 
@@ -32,8 +30,6 @@ public class BookTest {
             author1 = new Author(authorName);
             listAuthors = new ArrayList<>();
             listAuthors.add(author1);
-
-            book1 = new Book(originalId, originalTitle, listAuthors);
         }
         catch(Exception e){
             logger.severe(e.getMessage());
@@ -57,21 +53,21 @@ public class BookTest {
     }
 
     @Test(expected=NullTitleException.class)
-    public void nullTitleException() throws NullTitleException, NullAuthorException, NonUniqueIdException{
+    public void nullTitleException() throws NullTitleException, NullAuthorException{
         String id = originalId.concat("1");
         String nullTitle = null;
         new Book(id, nullTitle, listAuthors);
     }
 
     @Test(expected=NullTitleException.class)
-    public void emptyTitleException() throws NullTitleException, NullAuthorException, NonUniqueIdException{
+    public void emptyTitleException() throws NullTitleException, NullAuthorException{
         String id = originalId.concat("1");
         String nullTitle = "";
         new Book(id, nullTitle, listAuthors);
     }
 
     @Test(expected=NullAuthorException.class)
-    public void nullAuthorsException() throws NullTitleException, NullAuthorException, NonUniqueIdException {
+    public void nullAuthorsException() throws NullTitleException, NullAuthorException {
         String id = originalId.concat("1");
         String title = originalTitle.concat("1");
         listAuthors = null;
@@ -79,12 +75,12 @@ public class BookTest {
     }
 
     @Test(expected=NullAuthorException.class)
-    public void emptyAuthorsException() throws NullTitleException, NullAuthorException, NonUniqueIdException {
+    public void emptyAuthorsException() throws NullTitleException, NullAuthorException {
         String id = originalId.concat("1");
         String title = originalTitle.concat("1");
         listAuthors.clear();
         new Book(id, title, listAuthors);
     }
 
-    
+
 }
