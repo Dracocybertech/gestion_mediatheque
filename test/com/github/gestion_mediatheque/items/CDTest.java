@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.github.gestion_mediatheque.items.CD;
+import com.github.gestion_mediatheque.items.NegativeTracksNumberException;
+import com.github.gestion_mediatheque.items.NullEmptyAttributeException;
 
 public class CDTest {
     String id = "id";
@@ -38,5 +40,25 @@ public class CDTest {
         } catch (Exception e) {
             fail(e.getMessage());
         }
+    }
+
+    /**
+     * Test if CD is not created if id is null at the construction.
+     * @throws NegativeTracksNumberException 
+     * @throws NullEmptyAttributeException 
+     */
+    @Test(expected=NullEmptyAttributeException.class)
+    public void nullIdException() throws NullEmptyAttributeException, NegativeTracksNumberException{
+        new CD(null, title, artistName, tracksNumber);
+    }
+
+    /**
+     * Test if CD is not created if id is empty at the construction.
+     * @throws NegativeTracksNumberException 
+     * @throws NullEmptyAttributeException 
+     */
+    @Test(expected=NullEmptyAttributeException.class)
+    public void emptyIdException() throws NullEmptyAttributeException, NegativeTracksNumberException{
+        new CD("", title, artistName, tracksNumber);
     }
 }
