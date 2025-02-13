@@ -15,4 +15,17 @@ public class LibraryManager {
     public LibraryManager() {
         this.mapItems = new HashMap<>();
     }
+
+    /**
+     * Add any Item (CD or Book) to the library if the id doesn't exist.
+     * @param item
+     * @throws ItemAlreadyExistedException
+     */
+    public void addItem(LibraryItem item) throws ItemAlreadyExistedException{
+        //Item must have a different id from the ones of the library
+        if (mapItems.containsKey(item.getId())) {
+            throw new ItemAlreadyExistedException(item);
+        }
+        mapItems.put(item.getId(), item);
+    }
 }
