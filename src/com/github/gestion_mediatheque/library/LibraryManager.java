@@ -18,14 +18,25 @@ public class LibraryManager {
 
     /**
      * Add any Item (CD or Book) to the library if the id doesn't exist.
+     * 
      * @param item
      * @throws ItemAlreadyExistedException
      */
-    public void addItem(LibraryItem item) throws ItemAlreadyExistedException{
-        //Item must have a different id from the ones of the library
+    public void addItem(LibraryItem item) throws ItemAlreadyExistedException {
+        // Item must have a different id from the ones of the library
         if (mapItems.containsKey(item.getId())) {
             throw new ItemAlreadyExistedException(item);
         }
         mapItems.put(item.getId(), item);
+    }
+
+    /**
+     * Return item with specific
+     * 
+     * @param id
+     * @return LibraryItem
+     */
+    public LibraryItem getItem(String id) {
+        return this.mapItems.get(id);
     }
 }
