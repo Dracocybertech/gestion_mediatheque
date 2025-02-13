@@ -43,9 +43,17 @@ public class LibraryManagerTest {
 
     @Test
     public void testAddItem() throws ItemAlreadyExistedException {
-        //Check if items added to the library doesn't share an ID
+        // Check if items added to the library doesn't share an ID
         Assert.assertNotEquals(cd.getId(), book.getId());
         libraryManager.addItem(cd);
         libraryManager.addItem(book);
+    }
+
+    @Test(expected = ItemAlreadyExistedException.class)
+    public void testItemAlreadyExistedException() throws ItemAlreadyExistedException {
+        // Check if items share id to trigger the exception
+        Assert.assertEquals(cd.getId(), cdWithSameId.getId());
+        libraryManager.addItem(cd);
+        libraryManager.addItem(cdWithSameId);
     }
 }
