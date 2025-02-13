@@ -7,7 +7,7 @@ import com.github.gestion_mediatheque.items.LibraryItem;
 
 public class LibraryManager {
     private Map<String, LibraryItem> mapItems;
-    private static int MAX_SIZE = 100;
+    private static int maxSize = 100;
 
     /**
      * Constructor of LibraryManager
@@ -21,8 +21,13 @@ public class LibraryManager {
      * 
      * @param item
      * @throws ItemAlreadyExistedException
+     * @throws MaxSizeLibraryException
      */
-    public void addItem(LibraryItem item) throws ItemAlreadyExistedException {
+    public void addItem(LibraryItem item) throws ItemAlreadyExistedException, MaxSizeLibraryException {
+        if (mapItems.size() >= maxSize) {
+            throw new MaxSizeLibraryException(
+                    "The library has reached its maximum size of items. Remove items to add new ones.");
+        }
         // Item must have a different id from the ones of the library
         if (mapItems.containsKey(item.getId())) {
             throw new ItemAlreadyExistedException(item);
@@ -50,4 +55,5 @@ public class LibraryManager {
     public LibraryItem removeItem(String id) {
         return this.mapItems.remove(id);
     }
+
 }
