@@ -81,4 +81,26 @@ public class LibraryManagerTest {
         LibraryItem expectedNull = libraryManager.getItem(cdNotInLibrary.getId());
         Assert.assertNull(expectedNull);
     }
+
+    @Test
+    public void testRemoveItem() throws ItemAlreadyExistedException {
+        // Check if items added to the library doesn't share an ID
+        Assert.assertNotEquals(cd.getId(), book.getId());
+        libraryManager.addItem(cd);
+        libraryManager.addItem(book);
+
+        // Test for removing a Book from the library
+        LibraryItem expectedBook = libraryManager.removeItem(book.getId());
+        Assert.assertEquals(expectedBook, book);
+        Assert.assertNull(libraryManager.getItem(book.getId()));
+
+        // Test for removing a CD from the library
+        LibraryItem expectedCD = libraryManager.removeItem(cd.getId());
+        Assert.assertEquals(expectedCD, cd);
+        Assert.assertNull(libraryManager.getItem(cd.getId()));
+
+        // Test for removing a object which doesn't exist in the library
+        LibraryItem expectedNull = libraryManager.removeItem(cd.getId() + "1");
+        Assert.assertNull(expectedNull);
+    }
 }
