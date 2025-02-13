@@ -40,7 +40,7 @@ public class LibraryManager {
         return this.mapItems.get(id);
     }
 
-    public LibraryItem removItem(String id) {
+    public LibraryItem removeItem(String id) {
         return this.mapItems.remove(id);
     }
 }
