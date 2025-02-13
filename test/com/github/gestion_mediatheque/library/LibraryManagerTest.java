@@ -14,6 +14,7 @@ import com.github.gestion_mediatheque.items.NegativeTracksNumberException;
 import com.github.gestion_mediatheque.items.NullEmptyAttributeException;
 import com.github.gestion_mediatheque.library.ItemAlreadyExistedException;
 import com.github.gestion_mediatheque.library.LibraryManager;
+import com.github.gestion_mediatheque.library.MaxSizeLibraryException;
 import com.github.gestion_mediatheque.people.Author;
 
 public class LibraryManagerTest {
@@ -45,7 +46,7 @@ public class LibraryManagerTest {
     }
 
     @Test
-    public void testAddItem() throws ItemAlreadyExistedException {
+    public void testAddItem() throws ItemAlreadyExistedException, MaxSizeLibraryException {
         // Check if items added to the library doesn't share an ID
         Assert.assertNotEquals(cd.getId(), book.getId());
         libraryManager.addItem(cd);
@@ -53,16 +54,25 @@ public class LibraryManagerTest {
     }
 
     @Test(expected = ItemAlreadyExistedException.class)
-    public void testItemAlreadyExistedException() throws ItemAlreadyExistedException {
+    public void testItemAlreadyExistedException() throws ItemAlreadyExistedException, MaxSizeLibraryException {
         // Check if items share id to trigger the exception
         Assert.assertEquals(cd.getId(), cdWithSameId.getId());
         libraryManager.addItem(cd);
         libraryManager.addItem(cdWithSameId);
     }
 
+    @Test(expected = MaxSizeLibraryException.class)
+    public void testMaxSizeLibraryException() throws ItemAlreadyExistedException, MaxSizeLibraryException,
+            NullEmptyAttributeException, NegativeTracksNumberException {
+        for (int i = 0; i <= libraryManager.getMaxSize(); i++) {
+            libraryManager.addItem(new CD("idCD" + i, "cd", "artistName", 1));
+        }
+    }
+
     @Test
     public void testGetItem()
-            throws ItemAlreadyExistedException, NullEmptyAttributeException, NegativeTracksNumberException {
+            throws ItemAlreadyExistedException, NullEmptyAttributeException, NegativeTracksNumberException,
+            MaxSizeLibraryException {
         // Check if items added to the library doesn't share an ID
         Assert.assertNotEquals(cd.getId(), book.getId());
         libraryManager.addItem(cd);
@@ -83,7 +93,7 @@ public class LibraryManagerTest {
     }
 
     @Test
-    public void testRemoveItem() throws ItemAlreadyExistedException {
+    public void testRemoveItem() throws ItemAlreadyExistedException, MaxSizeLibraryException {
         // Check if items added to the library doesn't share an ID
         Assert.assertNotEquals(cd.getId(), book.getId());
         libraryManager.addItem(cd);
