@@ -56,4 +56,12 @@ public class LibraryManager {
         return this.mapItems.remove(id);
     }
 
+    /**
+     * Return the max size of the library.
+     * 
+     * @return int
+     */
+    public int getMaxSize() {
+        return LibraryManager.maxSize;
+    }
 }
