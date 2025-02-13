@@ -9,6 +9,9 @@ import org.junit.Test;
 
 import com.github.gestion_mediatheque.items.Book;
 import com.github.gestion_mediatheque.items.CD;
+import com.github.gestion_mediatheque.items.LibraryItem;
+import com.github.gestion_mediatheque.items.NegativeTracksNumberException;
+import com.github.gestion_mediatheque.items.NullEmptyAttributeException;
 import com.github.gestion_mediatheque.library.ItemAlreadyExistedException;
 import com.github.gestion_mediatheque.library.LibraryManager;
 import com.github.gestion_mediatheque.people.Author;
@@ -55,5 +58,27 @@ public class LibraryManagerTest {
         Assert.assertEquals(cd.getId(), cdWithSameId.getId());
         libraryManager.addItem(cd);
         libraryManager.addItem(cdWithSameId);
+    }
+
+    @Test
+    public void testGetItem()
+            throws ItemAlreadyExistedException, NullEmptyAttributeException, NegativeTracksNumberException {
+        // Check if items added to the library doesn't share an ID
+        Assert.assertNotEquals(cd.getId(), book.getId());
+        libraryManager.addItem(cd);
+        libraryManager.addItem(book);
+
+        // Test for an existing book
+        LibraryItem expectedBook = libraryManager.getItem(book.getId());
+        Assert.assertEquals(expectedBook, book);
+
+        // Test for an existing CD
+        LibraryItem expectedCD = libraryManager.getItem(cd.getId());
+        Assert.assertEquals(expectedCD, cd);
+
+        // Test for a non existing id
+        CD cdNotInLibrary = new CD(cd.getId() + "1", "cd", "artistName", 1);
+        LibraryItem expectedNull = libraryManager.getItem(cdNotInLibrary.getId());
+        Assert.assertNull(expectedNull);
     }
 }
