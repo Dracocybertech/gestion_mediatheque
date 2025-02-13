@@ -40,6 +40,13 @@ public class LibraryManager {
         return this.mapItems.get(id);
     }
 
+    /**
+     * Return the removed Book / CD from the library if it exists, otherwise return
+     * null.
+     * 
+     * @param id
+     * @return LibraryItem
+     */
     public LibraryItem removeItem(String id) {
         return this.mapItems.remove(id);
     }
