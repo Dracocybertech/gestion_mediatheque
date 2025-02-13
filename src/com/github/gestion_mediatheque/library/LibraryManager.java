@@ -39,4 +39,8 @@ public class LibraryManager {
     public LibraryItem getItem(String id) {
         return this.mapItems.get(id);
     }
+
+    public LibraryItem removItem(String id) {
+        return this.mapItems.remove(id);
+    }
 }
